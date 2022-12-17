@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-
+import mongoose, { Schema, model }  from 'mongoose';
+mongoose.set('strictQuery', true);
 const UserSchema = new Schema({
   firstName: {
     type: String,
@@ -38,5 +38,6 @@ const UserSchema = new Schema({
 },
 { timestamps: true }
 );
+
 const User = model('User', UserSchema);
 export default User;
