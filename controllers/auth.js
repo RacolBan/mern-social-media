@@ -3,6 +3,11 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 const register = async (req, res) => {
   try {
+    const file = req.file;
+    console.log(req.file)
+    if (!file) {
+      return res.status(400).json('please provider an avatar');
+    };
     const {
       firstName, 
       lastName, 
@@ -37,7 +42,9 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({email});
+    
+    console.log(email);
+    const user = await User.findOne({email: email});
     if (!user) return res.status(400).json({msg: 'User does not exist.'});
     const isMatch = await bcrypt.compare(password, user.password);
     if(!isMatch) return res.status(400).json({msg: 'invalid password'});

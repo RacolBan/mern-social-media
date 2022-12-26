@@ -12,6 +12,8 @@ import postRouter from './routers/post.js';
 import User from './models/User.js';
 import Post from './models/Post.js';
 import {posts, users} from './data/data.js'
+import multer from 'multer';
+import { register } from './controllers/auth.js';
 
 // CONFIGURATIONS
 const __filename = fileURLToPath(import.meta.url);
@@ -25,7 +27,7 @@ app.use(helmet({
 }));
 app.use(morgan('common'));
 app.use(cors());
-app.use('/assets', express.static(path.join(__dirname, 'pulic/assets')));
+app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/post', postRouter);

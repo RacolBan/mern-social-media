@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import upload from '../service/uploadPicture.js';
 import verifyToken from '../middleware/verifyToken.js';
-import { createPost, getFeedPosts, getUserPosts, likePost }  from '../controllers/post.js';
+import { createPost, getFeedPosts, getUserPosts, likePost } from '../controllers/post.js';
+import upload from '../middleware/uploadPicture.js';
 const router = Router();
 
 router.post('/', verifyToken, upload.single('picture'), createPost);
