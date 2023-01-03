@@ -1,11 +1,10 @@
-import { response } from 'express';
 import Post from '../models/Post.js';
 import User from '../models/User.js';
 const createPost = async (req, res) => {
  try {
   const { userId, picturePath, description } = req.body;
   const user = await User.findById(userId);
-  const newPost = {
+  const newPost = new Post({
     firstName: user.firstName,
     lastName: user.lastName,
     userId,
@@ -15,7 +14,7 @@ const createPost = async (req, res) => {
     userPicturePath: user.picturePath,
     likes: {},
     comments: []
-  }
+  });
   await newPost.save();
   const post = await Post.find();
   console.log(post);
