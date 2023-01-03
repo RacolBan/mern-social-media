@@ -5,7 +5,7 @@ import upload from '../middleware/uploadPicture.js';
 const router = Router();
 
 router.post('/', verifyToken, upload.single('picture'), createPost);
-router.get('/', verifyToken, getFeedPosts);
+router.get('/', getFeedPosts);
 router.get('/:userId', verifyToken, getUserPosts);
 router.patch('/:id/like', verifyToken, likePost);
 
